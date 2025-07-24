@@ -1,0 +1,8 @@
+__pycache__
+.env
+.venv
+logs
+*.lock
+.python-version
+/db/*
+/db-ai/*
