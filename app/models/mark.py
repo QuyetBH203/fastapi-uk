@@ -1,7 +1,6 @@
 from sqlalchemy import ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, composite, relationship
 from core.base_model.timestamp_model import TimestampModel
-from core.enum.role import Role
 
 from core.db import Base
 

@@ -82,8 +82,7 @@ def do_run_migrations(connection):
 def run_migrations_online() -> None:
     """Run migrations in 'online' mode."""
     
-    # Sử dụng URL không async cho môi trường đồng bộ
-    # Chuyển đổi URL từ postgresql+asyncpg:// thành postgresql://
+  
     connectable = create_engine(
         app_config.DB_URL.replace("asyncpg", "psycopg2"),
         poolclass=pool.NullPool,
