@@ -1,5 +1,5 @@
-from sqlalchemy import String
-from sqlalchemy.orm import Mapped, mapped_column, composite
+from sqlalchemy import String, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, composite, relationship
 from core.base_model.timestamp_model import TimestampModel
 from core.enum.role import Role
 
@@ -14,3 +14,5 @@ class User(Base, TimestampModel):
     email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     role: Mapped[Role] = mapped_column(String(255), nullable=False)
+    answers: Mapped[list["Answer"]] = relationship("Answer", back_populates="student")
+    marks: Mapped[list["Mark"]] = relationship("Mark", back_populates="tutor")
