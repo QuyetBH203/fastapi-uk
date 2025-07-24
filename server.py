@@ -1,19 +1,14 @@
 from fastapi import FastAPI
-
+from core.config import config
+from core.db import session
 
 app = FastAPI()
 
 
-# @app.on_event("startup")
-# async def startup_event():
-   
-#     try:
-#         test_connection()
-#         print("Database connection successful")
-#     except Exception as e:
-#         print(f"Database connection failed: {e}")
 
 
 @app.get("/",tags=["healthcheck"])
 async def root():
+    print(session)
+  
     return {"message": "Hello World"}
