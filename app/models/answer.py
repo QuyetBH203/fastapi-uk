@@ -14,3 +14,4 @@ class Answer(Base, TimestampModel):
     question: Mapped["Question"] = relationship("Question", back_populates="answers")
     student_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     student: Mapped["User"] = relationship("User", back_populates="answers")
+    marks: Mapped[list["Mark"]] = relationship("Mark", back_populates="answer")
