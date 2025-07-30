@@ -1,15 +1,23 @@
 from fastapi import FastAPI
 from enum import Enum
 from fastapi.middleware.cors import CORSMiddleware
+from core.middlewares import SQLAlchemyMiddleware
 from core.di import init_di
+from core.config import config
 
-# Initialize dependency injection before importing controllers
+
 init_di()
 
-# Import controllers after DI initialization
+
 from app.controller import module_router
 
-app = FastAPI()
+app = FastAPI(
+    title="FastAPI UK",
+    description="A FastAPI project template for UK developers",
+    version="0.1.0",
+    docs_url=None if config.ENV == "production" else "/docs",
+    redoc_url=None if config.ENV == "production" else "/redoc",
+)
 
 origins = [
     "http://localhost.tiangolo.com",
@@ -26,7 +34,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+app.add_middleware(SQLAlchemyMiddleware)
 
 
 @app.get("/",tags=["healthcheck"])

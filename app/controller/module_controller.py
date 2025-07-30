@@ -7,7 +7,7 @@ from app.service.module_service import ModuleService
 module_router = APIRouter(prefix="/module", tags=["module"])
 
 
-@module_router.post("/", response_model=ModuleResponse)
+@module_router.post("/", status_code = 201)
 async def create_module(module: CreateModuleDto):
     service = ModuleService()
     return await service.create_module(module)
