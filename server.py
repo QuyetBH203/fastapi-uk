@@ -7,8 +7,6 @@ from core.config import config
 
 
 init_di()
-
-
 from app.controller import module_router
 
 app = FastAPI(
