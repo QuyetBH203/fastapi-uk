@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from enum import Enum
 from fastapi.middleware.cors import CORSMiddleware
 from core.middlewares import SQLAlchemyMiddleware
 from core.di import init_di

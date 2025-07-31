@@ -18,7 +18,7 @@ class ModuleRepo(ABC):
         pass
 
     @abstractmethod
-    async def get_all_modules(self) -> List[Module]:
+    async def get_all_modules(self) -> Page[Module]:
         pass
 
     @abstractmethod

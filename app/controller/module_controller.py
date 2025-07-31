@@ -1,9 +1,7 @@
 from fastapi import APIRouter
-from typing import List
 from app.schemas.module_schema import CreateModuleDto, ModuleResponse
 from app.schemas.module_schema import UpdateModuleDto
 from fastapi_pagination import Page
-from app.models.module import Module
 from app.service.module_service import ModuleService
 
 module_router = APIRouter(prefix="/module", tags=["module"])
