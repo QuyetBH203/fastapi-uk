@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import (
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
-from typing import Union
+from typing import Union, AsyncGenerator
 
 from core.config import config
 
@@ -32,3 +32,11 @@ session: Union[AsyncSession, async_scoped_session] = async_scoped_session(
     scopefunc=get_session_id,
 )
 Base = declarative_base()
+
+
+async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
+    db: AsyncSession = async_session_factory()
+    try:
+        yield db
+    finally:
+        await db.close()

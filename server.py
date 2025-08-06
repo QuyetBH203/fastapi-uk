@@ -1,11 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from core.middlewares import SQLAlchemyMiddleware
-from core.di import init_di
 from core.config import config
-
-
-init_di()
 from app.controller import module_router
 
 app = FastAPI(
@@ -31,7 +26,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.add_middleware(SQLAlchemyMiddleware)
 
 
 @app.get("/",tags=["healthcheck"])

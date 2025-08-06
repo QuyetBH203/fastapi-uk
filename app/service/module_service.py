@@ -1,5 +1,4 @@
 from fastapi import HTTPException
-from pythondi import inject
 from app.repository.module_repo import ModuleRepo
 from app.models.module import Module
 from app.schemas.module_schema import CreateModuleDto
@@ -9,7 +8,7 @@ from fastapi_pagination import Page
 from app.schemas.module_schema import UpdateModuleDto
 
 class ModuleService:
-    @inject()
+    
     def __init__(self, module_repo: ModuleRepo):
         self.module_repo = module_repo
 
