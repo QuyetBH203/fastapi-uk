@@ -7,20 +7,29 @@ services:
     restart: always
     environment:
       POSTGRES_USER: ${DB_USER:-postgres}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-its-nestjs}
-      POSTGRES_DB: ${DB_DATABASE:-its-nestjs}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_DATABASE:-uk-learning}
     volumes:
       - postgres-data:/var/lib/postgresql/data
+  
 
-  redis:
-    container_name: amt-ai-redis
-    image: redis:latest
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
     ports:
-      - '${REDIS_PORT:-6379}:6379'
-    restart: always
-    volumes:
-      - redis-data:/data
+      - '${API_PORT:-8000}:8000'
+    command: >
+      sh -c "alembic upgrade head && uvicorn server:app --host 0.0.0.0 --port 8000 --workers 1"
+    depends_on:
+      - postgresql
+
 
 volumes:
   postgres-data:
-  redis-data:
+
+networks:
+  uk-learning-network:
+    driver: bridge

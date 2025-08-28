@@ -1,8 +1,8 @@
-"""Create some table
+"""init table
 
-Revision ID: 6b71e4e448f2
-Revises: d280bd0bc76c
-Create Date: 2025-07-24 16:55:27.558241
+Revision ID: 4e17423c4859
+Revises: 
+Create Date: 2025-08-01 11:44:01.495131
 
 """
 from typing import Sequence, Union
@@ -12,8 +12,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '6b71e4e448f2'
-down_revision: Union[str, Sequence[str], None] = 'd280bd0bc76c'
+revision: str = '4e17423c4859'
+down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -28,6 +28,17 @@ def upgrade() -> None:
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('users',
+    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+    sa.Column('full_name', sa.String(length=255), nullable=False),
+    sa.Column('email', sa.String(length=255), nullable=False),
+    sa.Column('password_hash', sa.String(length=255), nullable=False),
+    sa.Column('role', sa.String(length=255), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email')
     )
     op.create_table('questions',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
@@ -83,5 +94,6 @@ def downgrade() -> None:
     op.drop_table('answers')
     op.drop_table('study_manuals')
     op.drop_table('questions')
+    op.drop_table('users')
     op.drop_table('modules')
     # ### end Alembic commands ###

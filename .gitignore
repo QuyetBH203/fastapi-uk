@@ -6,3 +6,6 @@ logs
 .python-version
 /db/*
 /db-ai/*
+/.idea/*
+GEMINI.md
+.gemini
