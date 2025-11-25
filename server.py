@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from core.config import config
-from app.controller import module_router
+from app.controller import employee_router
 
 app = FastAPI(
-    title="FastAPI UK",
-    description="A FastAPI project template for UK developers",
+    title="Employee Management System",
+    description="Employee Management System API",
     version="0.1.0",
     docs_url=None if config.ENV == "production" else "/docs",
     redoc_url=None if config.ENV == "production" else "/redoc",
@@ -33,4 +33,4 @@ async def root():
     return {"message": "Hello World"}
 
 
-app.include_router(module_router)
+app.include_router(employee_router)

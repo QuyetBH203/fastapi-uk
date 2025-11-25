@@ -1,3 +1,3 @@
-from .module_controller import module_router
+from .employee_controller import router as employee_router
 
-__all__ = ["module_router"]
+__all__ = ["employee_router"]

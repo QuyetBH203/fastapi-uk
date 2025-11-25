@@ -1,9 +1,9 @@
 services:
   postgresql:
     container_name: amt-ai-postgres
-    image: postgres:15.7
+    image: postgres:17
     ports:
-      - '${DB_PORT:-5432}:5432'
+      - "${DB_PORT:-5432}:5432"
     restart: always
     environment:
       POSTGRES_USER: ${DB_USER:-postgres}
@@ -16,7 +16,7 @@ services:
     container_name: amt-ai-redis
     image: redis:latest
     ports:
-      - '${REDIS_PORT:-6379}:6379'
+      - "${REDIS_PORT:-6379}:6379"
     restart: always
     volumes:
       - redis-data:/data

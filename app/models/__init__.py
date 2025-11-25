@@ -1,8 +1,4 @@
-from app.models.user import User
-from app.models.answer import Answer
-from app.models.mark import Mark
-from app.models.module import Module
-from app.models.question import Question
-from app.models.study_manual import StudyManual
+from app.models.employees import Employees, EmployeeStatus
+from app.models.organizations import Organization
 
-__all__ = ["User", "Answer", "Mark", "Module", "Question", "StudyManual"]
+__all__ = ["Employees", "Organization", "EmployeeStatus"]
